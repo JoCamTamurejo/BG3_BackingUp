@@ -1,3 +1,6 @@
+REM (c) 2024, Jose Camacho jose.camacho@jocam.net
+REM Released under the MIT License https://opensource.org/licenses/MIT
+
 @echo off
 pause
 echo Save current bin and Data folders

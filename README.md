@@ -10,6 +10,10 @@ Writing this guide was a suggestion by the steam user (citation needed!), thanks
   
 Here we go.
 
+Legal Notice:
+(c) 2024, Jose Camacho jose.camacho@jocam.net
+Released under the MIT License https://opensource.org/licenses/MIT
+
 # Table of contents
 1. [Problem description](#problem-descriptionproblem-description)
 2. [Prerequisites and assumptions for the proposal to work](#prerequisites-and-assumptions-for-the-proposal-to-work)
@@ -144,7 +148,7 @@ Maybe you prefer to use windows batch scripts for all this. I created 3 differen
 * **_officalLinks.bat**: Deletes current symlinks and creates them to target the original _bin_ and _Data_ folders
 
   
-I suggest you to copy the batch files in the BG3 folder and create a Desktop shortcut to that folder.  
+To use them, copy the batch files in the BG3 folder. I suggest you to create a Desktop shortcut to that folder to make things easier  
   
 **And remember to execute them as administrator! (right click - "Execute as administrator" - confirm it)**
 
@@ -163,59 +167,4 @@ A new patch version comes in Windows, and ALSO in Mac?
 5. Use _noUpdateLink.bat
 
 # Scripts content
-If you are reading this guide, probably you already have the newest version, but, well, here they are for documentation purposes
-
-_saveme.bat:  
-```
-@echo off
-pause
-echo Save current bin and Data folders
-set mypath=%0\..\
-if exist %mypath%bin_noUpdate (
-  rmdir %mypath%bin_noUpdate /s /q
-  rmdir %mypath%Data_noUpdate /s /q
-)
-robocopy %mypath%bin %mypath%bin_noUpdate /s /e
-robocopy %mypath%Data %mypath%Data_noUpdate /s /e
-rename %mypath%bin %mypath%bin_original
-rename %mypath%Data %mypath%Data_original
-pause
-```
-  
-_noUpdateLink.bat  
-
-```
-@echo off
-echo Create links to the fixed/working version of baldurs gate
-set mypath=%0\..\
-if exist %mypath%bin_noUpdate (
-  rmdir %mypath%\bin /s /q
-  rmdir %mypath%\Data /s /q
-  mklink /D %mypath%\bin %mypath%\bin_noUpdate
-  mklink /D %mypath%\Data %mypath%\Data_noUpdate
-) else (
-  echo No local copy found
-)
-
-echo noUpdate Linking done
-pause
-```
-  
-_officialLink.bat  
-
-```
-@echo off
-echo Create links to the offical released version of baldurs gate
-set mypath=%0\..\
-if exist %mypath%bin_original (
-  rmdir %mypath%bin /s /q
-  rmdir %mypath%Data /s /q
-  mklink /D %mypath%bin %mypath%bin_original
-  mklink /D %mypath%Data %mypath%Data_original
-) else (
-  echo No local copy found
-)
-
-echo Official Linking done
-pause
-```
+Check the Github repository to get the updated (and probably bug-cleaner) version of the scripts
